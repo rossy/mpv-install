@@ -9,4 +9,12 @@ To run it:
 
 2. Copy the .bat files and the .ico to the same directory as mpv.exe
 
-3. Run mpv-install.bat as administrator
+3. Run ``mpv-install.bat`` as administrator
+
+Disclaimer
+----------
+
+Should work on Windows Vista and up, but only tested with Windows 8.1 and
+Windows 7. These scripts were written for personal use and released with the
+hope that they would be useful, but they haven't been tested with many
+different system configurations (yet,) so use them at your own risk.
