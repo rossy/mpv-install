@@ -34,6 +34,7 @@ for /f "usebackq eol= delims=" %%k in (`reg query "%classes_root_key%" /f "io.mp
 			set "value=%%v"
 			echo !value!| findstr /r /i "^io\.mpv\.[^\\][^\\]*$" >nul
 			if not errorlevel 1 (
+				echo Deleting !key!\!value!
 				reg delete "!key!" /v "!value!" /f >nul
 			)
 		)
@@ -45,6 +46,7 @@ for /f "usebackq eol= delims=" %%k in (`reg query "%classes_root_key%" /f "io.mp
 	set "key=%%k"
 	echo !key!| findstr /r /i "^HKEY_LOCAL_MACHINE\\SOFTWARE\\Classes\\io\.mpv\.[^\\][^\\]*$" >nul
 	if not errorlevel 1 (
+		echo Deleting !key!
 		reg delete "!key!" /f >nul
 	)
 )
