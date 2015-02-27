@@ -1,5 +1,6 @@
 @echo off
 setlocal enableextensions enabledelayedexpansion
+path %SystemRoot%\System32;%SystemRoot%;%SystemRoot%\System32\Wbem
 
 :: Make sure the script is running as admin
 call :ensure_admin

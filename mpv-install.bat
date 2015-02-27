@@ -1,5 +1,6 @@
 @echo off
 setlocal enableextensions enabledelayedexpansion
+path %SystemRoot%\System32;%SystemRoot%;%SystemRoot%\System32\Wbem
 
 :: Make sure this is Windows Vista or later
 call :ensure_vista
