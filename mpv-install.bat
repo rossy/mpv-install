@@ -39,7 +39,7 @@ call :reg add "%classes_root_key%\SystemFileAssociations\audio\OpenWithList\mpv.
 :: Add DVD AutoPlay handler
 set autoplay_key=HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers
 call :reg add "%classes_root_key%\io.mpv.dvd\shell\play" /d "&Play" /f
-call :reg add "%classes_root_key%\io.mpv.dvd\shell\play\command" /d "\"%mpv_path%\" %mpv_args% dvd://menu --dvd-device=%%%%L" /f
+call :reg add "%classes_root_key%\io.mpv.dvd\shell\play\command" /d "\"%mpv_path%\" %mpv_args% dvd://menu --dvd-device=\"%%%%L" /f
 call :reg add "%autoplay_key%\Handlers\MpvPlayDVDMovieOnArrival" /v "Action" /d "Play DVD movie" /f
 call :reg add "%autoplay_key%\Handlers\MpvPlayDVDMovieOnArrival" /v "DefaultIcon" /d "%mpv_path%,0" /f
 call :reg add "%autoplay_key%\Handlers\MpvPlayDVDMovieOnArrival" /v "InvokeProgID" /d "io.mpv.dvd" /f
@@ -49,7 +49,7 @@ call :reg add "%autoplay_key%\EventHandlers\PlayDVDMovieOnArrival" /v "MpvPlayDV
 
 :: Add Blu-ray AutoPlay handler
 call :reg add "%classes_root_key%\io.mpv.bluray\shell\play" /d "&Play" /f
-call :reg add "%classes_root_key%\io.mpv.bluray\shell\play\command" /d "\"%mpv_path%\" %mpv_args% bd:// --bluray-device=%%%%L" /f
+call :reg add "%classes_root_key%\io.mpv.bluray\shell\play\command" /d "\"%mpv_path%\" %mpv_args% bd:// --bluray-device=\"%%%%L" /f
 call :reg add "%autoplay_key%\Handlers\MpvPlayBluRayOnArrival" /v "Action" /d "Play Blu-ray movie" /f
 call :reg add "%autoplay_key%\Handlers\MpvPlayBluRayOnArrival" /v "DefaultIcon" /d "%mpv_path%,0" /f
 call :reg add "%autoplay_key%\Handlers\MpvPlayBluRayOnArrival" /v "InvokeProgID" /d "io.mpv.bluray" /f
@@ -206,7 +206,7 @@ exit 0
 
 :reg
 	:: Wrap the reg command to check for errors
-	reg %* >nul
+	>nul reg %*
 	if errorlevel 1 set error=yes
 	if [%error%] == [yes] echo Error in command: reg %*
 	if [%error%] == [yes] call :die
@@ -232,11 +232,11 @@ exit 0
 	call :reg add "%key%\shell\open" /v "LegacyDisable" /f
 
 	:: Set open command
-	call :reg add "%key%\shell\open\command" /d "\"%mpv_path%\" %mpv_args% -- \"%%%%L\"" /f
+	call :reg add "%key%\shell\open\command" /d "\"%mpv_path%\" %mpv_args% -- \"%%%%L" /f
 
 	:: Add "play" verb
 	call :reg add "%key%\shell\play" /d "&Play" /f
-	call :reg add "%key%\shell\play\command" /d "\"%mpv_path%\" %mpv_args% -- \"%%%%L\"" /f
+	call :reg add "%key%\shell\play\command" /d "\"%mpv_path%\" %mpv_args% -- \"%%%%L" /f
 
 	goto :EOF
 
