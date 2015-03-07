@@ -39,7 +39,7 @@ call :reg add "%classes_root_key%\SystemFileAssociations\audio\OpenWithList\mpv.
 :: Add DVD AutoPlay handler
 set autoplay_key=HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers
 call :reg add "%classes_root_key%\io.mpv.dvd\shell\play" /d "&Play" /f
-call :reg add "%classes_root_key%\io.mpv.dvd\shell\play\command" /d "\"%mpv_path%\" %mpv_args% dvd://menu --dvd-device=\"%%%%L" /f
+call :reg add "%classes_root_key%\io.mpv.dvd\shell\play\command" /d "\"%mpv_path%\" %mpv_args% dvd:// --dvd-device=\"%%%%L" /f
 call :reg add "%autoplay_key%\Handlers\MpvPlayDVDMovieOnArrival" /v "Action" /d "Play DVD movie" /f
 call :reg add "%autoplay_key%\Handlers\MpvPlayDVDMovieOnArrival" /v "DefaultIcon" /d "%mpv_path%,0" /f
 call :reg add "%autoplay_key%\Handlers\MpvPlayDVDMovieOnArrival" /v "InvokeProgID" /d "io.mpv.dvd" /f
