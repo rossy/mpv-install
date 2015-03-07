@@ -207,10 +207,9 @@ exit 0
 :reg
 	:: Wrap the reg command to check for errors
 	reg %* >nul
-	if errorlevel 1 (
-		echo Error in command: reg %*
-		call :die
-	)
+	if errorlevel 1 set error=yes
+	if [%error%] == [yes] echo Error in command: reg %*
+	if [%error%] == [yes] call :die
 	goto :EOF
 
 :reg_set_opt
