@@ -9,7 +9,7 @@ call :ensure_vista
 call :ensure_admin
 
 :: Command line arguments to use when launching mpv from a file association
-set mpv_args=--idle --force-window --keep-open
+set mpv_args=
 
 :: Get mpv.exe location
 set mpv_path=%~dp0mpv.exe
