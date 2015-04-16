@@ -21,6 +21,7 @@ What it does
 - Registers mpv with the _Default Programs_ control panel
 - Puts mpv in the "Open with" menu for all video and audio files
 - Registers mpv.exe so it can be used from the Run dialog and the Start Menu
+- Adds mpv as an AutoPlay handler for Blu-rays and DVDs
 - Works when reinstalled to a different folder than one it was in previously.
   (File associations created by the "Open with" menu have trouble with this.)
 
