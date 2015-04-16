@@ -1,20 +1,54 @@
 ``mpv-install.bat``
 ===================
 
-This script sets up file associations for mpv on Windows.
+This script sets up file associations for [mpv][1] on Windows.
 
-To use it:
+How to install
+--------------
 
-1. Download the zip: https://github.com/rossy/mpv-install/archive/master.zip
-2. Copy the .bat files and the .ico to the same directory as mpv.exe
-3. Run ``mpv-install.bat`` as administrator
-4. Use the _Default Programs_ and _AutoPlay_ control panels to make mpv the
+1. Make sure you have the latest build of mpv. Official builds here:
+   http://mpv.srsfckn.biz/
+2. Download the zip: https://github.com/rossy/mpv-install/archive/master.zip
+3. Copy the .bat files and the .ico to the same directory as mpv.exe
+4. Run ``mpv-install.bat`` as administrator
+5. Use the _Default Programs_ and _AutoPlay_ control panels to make mpv the
    default player
+
+What it does
+------------
+
+- Creates file associations for several video and audio file types
+- Registers mpv with the _Default Programs_ control panel
+- Puts mpv in the "Open with" menu for all video and audio files
+- Registers mpv.exe so it can be used from the Run dialog and the Start Menu
+- Works when reinstalled to a different folder than one it was in previously.
+  (File associations created by the "Open with" menu have trouble with this.)
+
+What it doesn't do
+------------------
+
+- Add mpv to the ``%PATH%``
+- Enable thumbnails for all media types (use [Icaros][2] for this)
+- Allow multiple files to be selected and opened as a playlist. This is harder
+  than it sounds and it can't be done with a simple script. As a workaround,
+  you can create a shortcut to mpv.exe in the "Send to" menu.
+
+How to uninstall
+----------------
+
+To remove all traces of this script from your computer, run
+``mpv-uninstall.bat``.
+
+**Note:** This is not necessary if you want to reinstall mpv later (in a
+different folder, for example,) only if you want to remove it completely. To
+reinstall, just run ``mpv-install.bat`` again.
 
 Disclaimer
 ----------
 
-Should work on Windows Vista and up, but only tested with Windows 8.1 and
-Windows 7. These scripts were written for personal use and released with the
-hope that they would be useful, but they haven't been tested with many
-different system configurations (yet,) so use them at your own risk.
+Should work on Windows Vista and up, tested with Windows Vista, 7 and 8.1.
+These scripts were written for personal use and released with the hope that
+they would be useful, but without any warranty.
+
+[1]: http://mpv.io/
+[2]: http://www.majorgeeks.com/files/details/icaros.html
