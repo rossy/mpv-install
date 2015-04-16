@@ -1,4 +1,4 @@
-``mpv-install.bat``
+``mpv-install.bat`` <img src="http://a.pomf.se/cwyalk.png" align="right">
 ===================
 
 This script sets up file associations for [mpv][1] on Windows.
@@ -37,7 +37,7 @@ How to uninstall
 ----------------
 
 To remove all traces of this script from your computer, run
-``mpv-uninstall.bat``.
+``mpv-uninstall.bat`` as administrator.
 
 **Note:** This is not necessary if you want to reinstall mpv later (in a
 different folder, for example,) only if you want to remove it completely. To
