@@ -1,4 +1,4 @@
-``mpv-install.bat`` <img src="http://a.pomf.se/cwyalk.png" align="right">
+``mpv-install.bat`` <img src="https://rossy.github.io/mpv-install/mpv-document.png" align="right">
 ===================
 
 This script sets up file associations for [mpv][1] on Windows.
