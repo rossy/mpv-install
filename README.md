@@ -7,7 +7,7 @@ How to install
 --------------
 
 1. Make sure you have the latest build of mpv. Official builds here:
-   http://mpv.srsfckn.biz/
+   https://mpv.srsfckn.biz/
 2. Download the zip: https://github.com/rossy/mpv-install/archive/master.zip
 3. Copy the .bat files and the .ico to the same directory as mpv.exe
 4. Run ``mpv-install.bat`` as administrator
@@ -47,7 +47,7 @@ reinstall, just run ``mpv-install.bat`` again.
 Disclaimer
 ----------
 
-Should work on Windows Vista and up, tested with Windows Vista, 7 and 8.1.
+Should work on Windows Vista and up, tested with Windows Vista, 7, 8.1 and 10.
 These scripts were written for personal use and released with the hope that
 they would be useful, but without any warranty.
 
