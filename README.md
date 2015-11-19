@@ -22,8 +22,9 @@ What it does
 - Puts mpv in the "Open with" menu for all video and audio files
 - Registers mpv.exe so it can be used from the Run dialog and the Start Menu
 - Adds mpv as an AutoPlay handler for Blu-rays and DVDs
-- Works when reinstalled to a different folder than one it was in previously.
-  (File associations created by the "Open with" menu have trouble with this.)
+- Works when reinstalled to a different folder than the one it was in
+  previously. (File associations created by the "Open with" menu have trouble
+  with this.)
 
 What it doesn't do
 ------------------
@@ -51,5 +52,5 @@ Should work on Windows Vista and up, tested with Windows Vista, 7, 8.1 and 10.
 These scripts were written for personal use and released with the hope that
 they would be useful, but without any warranty.
 
-[1]: http://mpv.io/
+[1]: https://mpv.io/
 [2]: http://www.majorgeeks.com/files/details/icaros.html
