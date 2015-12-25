@@ -52,6 +52,9 @@ for /f "usebackq eol= delims=" %%k in (`reg query "%classes_root_key%" /f "io.mp
 )
 
 echo Uninstalled successfully
+if "%1" == "silent" (
+	exit 0
+)
 pause
 exit 0
 
