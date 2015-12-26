@@ -173,6 +173,9 @@ echo.
 echo Installed successfully^^! You can now configure mpv's file associations in the
 echo Default Programs control panel.
 echo.
+if "%1" == "silent" (
+	exit 0
+)
 <nul set /p =Press any key to open the Default Programs control panel . . .
 pause >nul
 control /name Microsoft.DefaultPrograms
