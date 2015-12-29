@@ -10,7 +10,8 @@ How to install
    https://mpv.srsfckn.biz/
 2. Download the zip: https://github.com/rossy/mpv-install/archive/master.zip
 3. Copy the .bat files and the .ico to the same directory as mpv.exe
-4. Run ``mpv-install.bat`` as administrator
+4. Run ``mpv-install.bat`` as administrator. **Note:** For an unattended
+   install, use the ``\u`` switch.
 5. Use the _Default Programs_ and _AutoPlay_ control panels to make mpv the
    default player
 

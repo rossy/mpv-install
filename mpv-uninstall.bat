@@ -2,6 +2,10 @@
 setlocal enableextensions enabledelayedexpansion
 path %SystemRoot%\System32;%SystemRoot%;%SystemRoot%\System32\Wbem
 
+:: Unattended install flag. When set, the script will not require user input.
+set unattended=no
+if "%1"=="/u" set unattended=yes
+
 :: Make sure the script is running as admin
 call :ensure_admin
 
@@ -52,11 +56,13 @@ for /f "usebackq eol= delims=" %%k in (`reg query "%classes_root_key%" /f "io.mp
 )
 
 echo Uninstalled successfully
+if [%unattended%] == [yes] exit 0
 pause
 exit 0
 
 :die
 	if not [%1] == [] echo %~1
+	if [%unattended%] == [yes] exit 1
 	pause
 	exit 1
 

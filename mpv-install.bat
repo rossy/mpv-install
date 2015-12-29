@@ -2,6 +2,10 @@
 setlocal enableextensions enabledelayedexpansion
 path %SystemRoot%\System32;%SystemRoot%;%SystemRoot%\System32\Wbem
 
+:: Unattended install flag. When set, the script will not require user input.
+set unattended=no
+if "%1"=="/u" set unattended=yes
+
 :: Make sure this is Windows Vista or later
 call :ensure_vista
 
@@ -173,6 +177,7 @@ echo.
 echo Installed successfully^^! You can now configure mpv's file associations in the
 echo Default Programs control panel.
 echo.
+if [%unattended%] == [yes] exit 0
 <nul set /p =Press any key to open the Default Programs control panel . . .
 pause >nul
 control /name Microsoft.DefaultPrograms
@@ -180,6 +185,7 @@ exit 0
 
 :die
 	if not [%1] == [] echo %~1
+	if [%unattended%] == [yes] exit 1
 	pause
 	exit 1
 
