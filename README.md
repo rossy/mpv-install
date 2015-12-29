@@ -26,11 +26,11 @@ What it does
 - Works when reinstalled to a different folder than the one it was in
   previously. (File associations created by the "Open with" menu have trouble
   with this.)
+- Adds mpv to the ``%PATH%``
 
 What it doesn't do
 ------------------
 
-- Add mpv to the ``%PATH%``
 - Enable thumbnails for all media types (use [Icaros][2] for this)
 - Allow multiple files to be selected and opened as a playlist. This is harder
   than it sounds and it can't be done with a simple script. As a workaround,

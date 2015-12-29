@@ -1,6 +1,6 @@
 @echo off
 setlocal enableextensions enabledelayedexpansion
-path %SystemRoot%\System32;%SystemRoot%;%SystemRoot%\System32\Wbem
+path %SystemRoot%\System32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SystemRoot%\System32\WindowsPowerShell\v1.0
 
 :: Unattended install flag. When set, the script will not require user input.
 set unattended=no
@@ -22,6 +22,20 @@ if not exist "%mpv_path%" call :die "mpv.exe not found"
 :: Get mpv-document.ico location
 set icon_path=%~dp0mpv-document.ico
 if not exist "%icon_path%" call :die "mpv-document.ico not found"
+
+:: Add mpv to the %PATH%
+powershell -Command ^
+	$new_path = \"%~dp0/\".TrimEnd('\/'); ^
+	$env_key_name = 'SYSTEM\CurrentControlSet\Control\Session Manager\Environment'; ^
+	$env_key = [Microsoft.Win32.Registry]::LocalMachine.OpenSubKey($env_key_name, $true); ^
+	$path_unexp = $env_key.GetValue('Path', $null, [Microsoft.Win32.RegistryValueOptions]::DoNotExpandEnvironmentNames); ^
+	if (^^!$path_unexp) { Exit } ^
+	if (\";$path_unexp;\".Contains(\";$new_path;\")) { Exit } ^
+	$path_unexp += \";$new_path\"; ^
+	$env_key.SetValue('Path', $path_unexp, [Microsoft.Win32.RegistryValueKind]::ExpandString)
+
+:: Notify the shell of environment variable changes
+call :notify_env_changed
 
 :: Register mpv.exe under the "App Paths" key, so it can be found by
 :: ShellExecute, the run command, the start menu, etc.
@@ -173,6 +187,9 @@ call :add_type ""                                 "audio" "CUE Sheet"           
 :: Register "Default Programs" entry
 call :reg add "HKLM\SOFTWARE\RegisteredApplications" /v "mpv" /d "SOFTWARE\Clients\Media\mpv\Capabilities" /f
 
+:: Notify the shell of file association changes
+call :notify_assoc_changed
+
 echo.
 echo Installed successfully^^! You can now configure mpv's file associations in the
 echo Default Programs control panel.
@@ -300,5 +317,39 @@ exit 0
 		shift /4
 		set extension=%~4
 		if not [%extension%] == [] goto extension_loop
+
+	goto :EOF
+
+:notify_env_changed
+	powershell -Command ^
+		Add-Type -TypeDefinition ' ^
+			using System; ^
+			using System.Runtime.InteropServices; ^
+		^
+			public static class NativeMethods { ^
+				public static int HWND_BROADCAST = 0xffff; ^
+				public static int WM_SETTINGCHANGE = 0x1a; ^
+		^
+				[DllImport(\"user32.dll\", SetLastError = true, CharSet = CharSet.Unicode)] ^
+				public static extern bool SendNotifyMessage(IntPtr hWnd, uint Msg, IntPtr wParam, string lParam); ^
+			}'; ^
+		[NativeMethods]::SendNotifyMessage([NativeMethods]::HWND_BROADCAST, [NativeMethods]::WM_SETTINGCHANGE, [IntPtr]::Zero, 'Environment') ^| Out-Null
+
+	goto :EOF
+
+:notify_assoc_changed
+	powershell -Command ^
+		Add-Type -TypeDefinition ' ^
+			using System; ^
+			using System.Runtime.InteropServices; ^
+		^
+			public static class NativeMethods { ^
+				public static int SHCNE_ASSOCCHANGED = 0x8000000; ^
+				public static uint SHCNF_IDLIST = 0; ^
+		^
+				[DllImport(\"shell32.dll\")] ^
+				public static extern void SHChangeNotify(int wEventId, uint uFlags, IntPtr dwItem1, IntPtr dwItem2); ^
+			}'; ^
+		[NativeMethods]::SHChangeNotify([NativeMethods]::SHCNE_ASSOCCHANGED, [NativeMethods]::SHCNF_IDLIST, [IntPtr]::Zero, [IntPtr]::Zero)
 
 	goto :EOF
