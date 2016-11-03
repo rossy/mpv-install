@@ -6,9 +6,13 @@ This script sets up file associations for [mpv][1] on Windows.
 How to install
 --------------
 
-1. Make sure you have the latest build of mpv. Official builds here:
+1. Make sure you have the latest build of mpv. Official builds are here:
    https://mpv.srsfckn.biz/
 2. Download the zip: https://github.com/rossy/mpv-install/archive/master.zip
+   <br>
+   **Note:** Make sure you use the above link. Don't use GitHub's "Raw" links
+   on the files themselves, since these have incorrect line-endings, which
+   cause the script to crash. (See [#7][2].)
 3. Copy the .bat files and the .ico to the same directory as mpv.exe
 4. Run ``mpv-install.bat`` as administrator. **Note:** For an unattended
    install, use the ``/u`` switch.
@@ -31,7 +35,7 @@ What it doesn't do
 ------------------
 
 - Add mpv to the ``%PATH%``
-- Enable thumbnails for all media types (use [Icaros][2] for this)
+- Enable thumbnails for all media types (use [Icaros][3] for this)
 - Allow multiple files to be selected and opened as a playlist. This is harder
   than it sounds and it can't be done with a simple script. As a workaround,
   you can create a shortcut to mpv.exe in the "Send to" menu.
@@ -54,4 +58,5 @@ These scripts were written for personal use and released with the hope that
 they would be useful, but without any warranty.
 
 [1]: https://mpv.io/
-[2]: http://www.majorgeeks.com/files/details/icaros.html
+[2]: https://github.com/rossy/mpv-install/issues/7
+[3]: http://www.majorgeeks.com/files/details/icaros.html
