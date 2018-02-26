@@ -238,11 +238,12 @@ exit 0
 	call :reg add "%key%\shell\open" /v "LegacyDisable" /f
 
 	:: Set open command
-	call :reg add "%key%\shell\open\command" /d "\"%mpv_path%\" %mpv_args% -- \"%%%%L" /f
+	call :reg add "%key%\shell\open\command" /d "\"%mpv_path%\" %mpv_args% -- \"%%%%L\"" /f
 
 	:: Add "play" verb
 	call :reg add "%key%\shell\play" /d "&Play" /f
-	call :reg add "%key%\shell\play\command" /d "\"%mpv_path%\" %mpv_args% -- \"%%%%L" /f
+	call :reg add "%key%\shell\play" /v "MUIVerb" /t REG_EXPAND_SZ /d "@%%SystemRoot%%\system32\unregmp2.exe,-9991" /f
+	call :reg add "%key%\shell\play\command" /d "\"%mpv_path%\" %mpv_args% -- \"%%%%L\"" /f
 
 	goto :EOF
 
