@@ -250,10 +250,10 @@ exit 0
 	set prog_id=%~1
 	set friendly_name=%~2
 
-	:: Add ProgId, edit flags are FTA_OpenIsSafe | FTA_AlwaysUseDirectInvoke
+	:: Add ProgId, edit flags are FTA_OpenIsSafe
 	set prog_id_key=%classes_root_key%\%prog_id%
 	call :reg add "%prog_id_key%" /d "%friendly_name%" /f
-	call :reg add "%prog_id_key%" /v "EditFlags" /t REG_DWORD /d 4259840 /f
+	call :reg add "%prog_id_key%" /v "EditFlags" /t REG_DWORD /d 65536 /f
 	call :reg add "%prog_id_key%" /v "FriendlyTypeName" /d "%friendly_name%" /f
 	call :reg add "%prog_id_key%\DefaultIcon" /d "%icon_path%" /f
 	call :add_verbs "%prog_id_key%"
